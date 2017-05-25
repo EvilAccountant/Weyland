@@ -4,15 +4,18 @@ import com.weyland.domain.User;
 import com.weyland.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
  * Created by Dell on 2017-5-22.
  */
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -26,46 +29,39 @@ public class UserController {
     }
 
     @PostMapping(value="/queryUser")
-    public User QueryUserAct(String userAccount){
+    public List<User> QueryUserAct(String userAccount){
 
         return userService.queryUser(userAccount);
 
     }
 
-//    @RequestMapping("")
-//    public String turnIndex(HttpServletResponse response){
-//
-//        return response.encodeRedirectURL("/index");
-//
-//    }
-//
-//    @RequestMapping("/index")
-//    public String goHome(Model model){
-//        return "index";
-//    }
-//
-//
-//
-//    //跳转到注册页面
-//    @RequestMapping(value = "/register", method = RequestMethod.GET)
-//    public String getRegister(){
-//        return "/register";
-//    }
-//
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public String haveRegister(Model model, @ModelAttribute(value = "user") User user, HttpServletResponse response){
-//
-//        String result=userService.register(user);
-//
-//        model.addAttribute("result",result);
-//
-//        return response.encodeRedirectURL("/index");
-//
-//    }
+    @RequestMapping(value = "/fuck",method = RequestMethod.GET)
+    public String say(){
+        return "index";
+    }
 
 
+    @ResponseBody
+    @RequestMapping("/hello")
+    public String hello() {
+        return "Hello World";
+    }
 
+    @RequestMapping("/")
+    public String index(ModelMap map) {
+        map.addAttribute("hello", "hello Thymeleaf!");
+        return "hello";
+    }
 
+    @RequestMapping("/query")
+    public String register(Model model,String queryString){
+
+        List<User> userList=userService.queryUser(queryString);
+        model.addAttribute("userList",userList);
+        model.addAttribute("queryString",queryString);
+        return "query";
+
+    }
 
 
 

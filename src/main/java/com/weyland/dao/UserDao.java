@@ -18,8 +18,9 @@ public interface UserDao extends JpaRepository<User,Integer> {
      * @param userAccount
      * @return
      */
-    @Query("select u from User u where u.userAccount=:userAccount")
-    User findByUserAccount(@Param("userAccount") String userAccount);
+    //此处编译错误请无视，能正常工作
+    @Query("select u from User u where u.userAccount like %:userAccount%")
+    List<User> findByUserAccount(@Param("userAccount") String userAccount);
 
     /**
      * 通过用户名查找

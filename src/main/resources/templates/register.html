@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>home</title>
+    <style>
+        .inputStyle{
+            width: 240px;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 220px;height: auto;text-align: center;margin-left: 20px">
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div class="inputStyle">帐号<input type="text" name="userAccount"/></div>
+        <div class="inputStyle">密码<input type="text" name="userPassword"/></div>
+        <!--<div class="inputStyle">重输密码<input type="text" name="userPassword"></div>-->
+        <div class="inputStyle">用户名<input type="text" name="userName"/></div>
+        <div class="inputStyle">性别<input type="text" name="userGender"/></div>
+        <div class="inputStyle">出生日期<input type="text" name="userBirth"/></div>
+        <div class="inputStyle">邮箱<input type="text" name="userEmail"/></div>
+        <button type="submit">注册</button>
+    </form>
+</div>
+</body>
+</html>
