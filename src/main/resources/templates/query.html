@@ -8,14 +8,32 @@
             width: 240px;
         }
     </style>
+
+    <!--<script>-->
+        <!--function doFind(){-->
+            <!--$.ajax({-->
+                <!--cache: true,-->
+                <!--type: "POST",-->
+                <!--url:"/query", //把表单数据发送到query.html-->
+                <!--data:$('#iForm').serialize(), //要发送的是iForm表单中的数据-->
+                <!--error: function(request) {-->
+                    <!--alert("发送请求失败！");-->
+                <!--},-->
+                <!--success: function(data) {-->
+                    <!--alert("发送请求成功！"); //将返回的结果显示到ajaxDiv中-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+    <!--</script>-->
+
 </head>
 <body>
 <div style="width: 220px;height: auto;text-align: center;margin-left: 20px">
-    <form th:action="@{/query}" th:object="${userAccount}" method="post">
-        <input type="text" name="queryString" />
+    <form th:action="@{/query}" th:object="${userAccount}" method="post" id="iForm">
+        <input type="text" name="queryString" th:value="${queryString}" />
         <button type="submit">查询</button>
     </form>
-    <table>
+    <table id="iTable">
         <tr>
             <th>ID</th>
             <th>帐号</th>
@@ -33,7 +51,6 @@
             <td th:text="${user.userEmail}"></td>
         </tr>
     </table>
-
 </div>
 </body>
 </html>

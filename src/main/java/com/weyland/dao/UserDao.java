@@ -15,12 +15,21 @@ public interface UserDao extends JpaRepository<User,Integer> {
 
     /**
      * 通过账户名查找
-     * @param userAccount
+     * @param queryString
      * @return
      */
     //此处编译错误请无视，能正常工作
-    @Query("select u from User u where u.userAccount like %:userAccount%")
-    List<User> findByUserAccount(@Param("userAccount") String userAccount);
+    @Query("select u from User u where u.userAccount like %:queryString% " +
+            "or u.userName like %:queryString%")
+    List<User> findUser(@Param("queryString") String queryString);
+
+    /**
+     * 通过用户名查找
+     * @param userAccount
+     * @return
+     */
+    @Query("select u from User u where u.userAccount =:userAccount")
+    User findByUserAccount(@Param("userAccount") String userAccount);
 
     /**
      * 通过用户名查找

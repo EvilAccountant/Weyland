@@ -16,25 +16,24 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User register(User user){
+    public String register(User user){
 
         if(userDao.findByUserAccount(user.getUserAccount())==null){
 
-        return userDao.save(user);
+        userDao.save(user);
 
-//      return "register complete";
+        return "success";
 
         }else{
-//            return "register failed";
-              return null;
+
+            return "failed";
         }
 
     }
 
     public List<User> queryUser(String userAccount){
 
-
-        return userDao.findByUserAccount(userAccount);
+        return userDao.findUser(userAccount);
 
     }
 }

@@ -21,12 +21,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/addUser")
-    public User addUserAct(User user){
 
-        return userService.register(user);
-
-    }
+//    @PostMapping(value = "/addUser")
+//    public User addUserAct(User user){
+//
+//        return userService.register(user);
+//
+//    }
 
     @PostMapping(value="/queryUser")
     public List<User> QueryUserAct(String userAccount){
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     @RequestMapping("/query")
-    public String register(Model model,String queryString){
+    public String query(Model model,String queryString){
 
         List<User> userList=userService.queryUser(queryString);
         model.addAttribute("userList",userList);
@@ -63,6 +64,25 @@ public class UserController {
 
     }
 
+    //进入注册页面，使用Get请求，REST风格的URL能更有雅的处理问题
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerGet() {
+        return "register";
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public String registerPost(Model model,@ModelAttribute(value = "user") User user){
+        String result=userService.register(user);
+
+        if(result.equals("success")){
+            model.addAttribute("result",result);
+            return "register";
+        }else {
+            model.addAttribute("result",result);
+            return "register";
+        }
+
+    }
 
 
 }
