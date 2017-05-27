@@ -25,15 +25,11 @@
 
 <div class="page-container">
     <h1>Register</h1>
-    <form th:action="@{/register}" th:object="${user}" method="post">
+    <form th:action="@{/login}" th:object="${user}" method="post">
         <div style="width: 150px;">
-        <input type="text" name="userAccount" class="username" placeholder="Account"/>
-        <input type="password" name="userPassword" class="password" placeholder="Password"/>
-        <input type="text" name="userName" class="username" placeholder="Name"/>
-        <input type="text" name="userGender" class="username" placeholder="Gender"/>
-        <input type="text" name="userBirth" class="username" placeholder="Birth"/>
-        <input type="text" name="userEmail" class="username" placeholder="Email"/>
-        <button type="submit">Register</button>
+            <input type="text" name="userAccount" class="username" placeholder="Account" th:value="*{userAccount}"/>
+            <input type="password" name="userPassword" class="password" placeholder="Password" th:value="*{userPassword}"/>
+            <button type="submit">Register</button>
         </div>
         <div class="error">
             <div th:text="${result}"/>

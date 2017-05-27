@@ -31,6 +31,23 @@ public class UserService {
 
     }
 
+    public String login(User user){
+        User result=userDao.findByUserAccount(user.getUserAccount());
+
+        if(null!=result){
+
+            if(result.getUserAccount().equals(user.getUserAccount())&&result.getUserPassword().equals(user.getUserPassword())){
+
+                return "success";
+
+            }else{
+
+                return "misMatch";
+            }
+        }
+                return "tan90";
+    }
+
     public List<User> queryUser(String userAccount){
 
         return userDao.findUser(userAccount);

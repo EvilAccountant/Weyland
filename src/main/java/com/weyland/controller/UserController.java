@@ -29,12 +29,12 @@ public class UserController {
 //
 //    }
 
-    @PostMapping(value="/queryUser")
-    public List<User> QueryUserAct(String userAccount){
-
-        return userService.queryUser(userAccount);
-
-    }
+//    @PostMapping(value="/queryUser")
+//    public List<User> QueryUserAct(String userAccount){
+//
+//        return userService.queryUser(userAccount);
+//
+//    }
 
     @RequestMapping(value = "/fuck",method = RequestMethod.GET)
     public String say(){
@@ -64,7 +64,7 @@ public class UserController {
 
     }
 
-    //进入注册页面，使用Get请求，REST风格的URL能更有雅的处理问题
+    //进入注册页面，使用Get请求
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerGet() {
         return "register";
@@ -76,11 +76,42 @@ public class UserController {
 
         if(result.equals("success")){
             model.addAttribute("result",result);
-            return "register";
+            return "login";
         }else {
             model.addAttribute("result",result);
             return "register";
         }
+
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginGet(){
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginPost(Model model,@ModelAttribute(value="user") User user){
+
+        String result=userService.login(user);
+
+        if(result.equals("success")){
+
+            return "query";
+
+        }else if (result.equals("misMatch")){
+
+            model.addAttribute("result",result);
+            model.addAttribute("user",user);
+
+            return "login";
+
+        }else {
+
+            model.addAttribute("result",result);
+            model.addAttribute("user",user);
+            return "login";
+        }
+
 
     }
 
