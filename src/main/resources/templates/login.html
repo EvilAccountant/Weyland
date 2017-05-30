@@ -9,10 +9,16 @@
     <meta name="author" content=""/>
 
     <!-- CSS -->
-    <link rel='stylesheet' type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" th:href="@{http://fonts.googleapis.com/css?family=PT+Sans:400,700}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/reset.css" th:href="@{../static/css/reset.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/supersized.css" th:href="@{../static/css/supersized.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{../static/css/style.css}"/>
+    <link rel='stylesheet' type="text/css" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700" th:src="@{http://fonts.googleapis.com/css?family=PT+Sans:400,700}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css" th:src="@{../static/css/reset.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/supersized.css" th:src="@{../static/css/supersized.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:src="@{../static/css/style.css}"/>
+
+    <!-- Javascript -->
+    <script src="../static/js/jquery-1.8.2.min.js" th:src="@{../static/js/jquery-1.8.2.min.js}"></script>
+    <script src="../static/js/supersized.3.2.7.min.js" th:src="@{../static/js/supersized.3.2.7.min.js}"></script>
+    <script src="../static/js/supersized-init.js" th:src="@{../static/js/supersized-init.js}"></script>
+    <script src="../static/js/scripts.js" th:src="@{../static/js/scripts.js}"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -24,12 +30,12 @@
 <body>
 
 <div class="page-container">
-    <h1>Register</h1>
+    <h1>Login</h1>
     <form th:action="@{/login}" th:object="${user}" method="post">
         <div style="width: 150px;">
-            <input type="text" name="userAccount" class="username" placeholder="Account" th:value="*{userAccount}"/>
-            <input type="password" name="userPassword" class="password" placeholder="Password" th:value="*{userPassword}"/>
-            <button type="submit">Register</button>
+            <input type="text" name="userAccount" class="username" placeholder="Account" />
+            <input type="password" name="userPassword" class="password" placeholder="Password" />
+            <button type="submit">Login</button>
         </div>
         <div class="error">
             <div th:text="${result}"/>
@@ -37,15 +43,7 @@
     </form>
 
 </div>
-
-<!-- Javascript -->
-<script src="../static/js/jquery-1.8.2.min.js"></script>
-<script src="../static/js/supersized.3.2.7.min.js"></script>
-<script src="../static/js/supersized-init.js"></script>
-<script src="../static/js/scripts.js"></script>
-
 </body>
-
 </html>
 
 
