@@ -9,28 +9,34 @@
         }
     </style>
 
-    <!--<script>-->
-        <!--function doFind(){-->
-            <!--$.ajax({-->
-                <!--cache: true,-->
-                <!--type: "POST",-->
-                <!--url:"/query", //把表单数据发送到query.html-->
-                <!--data:$('#iForm').serialize(), //要发送的是iForm表单中的数据-->
-                <!--error: function(request) {-->
-                    <!--alert("发送请求失败！");-->
-                <!--},-->
-                <!--success: function(data) {-->
-                    <!--alert("发送请求成功！"); //将返回的结果显示到ajaxDiv中-->
-                <!--}-->
-            <!--});-->
-        <!--}-->
-    <!--</script>-->
+    <script>
+
+        function queryUser() {
+            var form1=document.getElementById("iForm");
+        }
+
+        function updateUser(id) {
+            var form1=document.getElementById("iForm");
+            id=document.getElementById("rowId");
+            form1.action="updateUser";
+            form1.submit();
+        }
+
+        function deleteUser(id) {
+            var form1=document.getElementById("iForm");
+            id=document.getElementById("rowId");
+            form1.action="deleteUser";
+            form1.submit();
+        }
+
+    </script>
 
 </head>
 <body>
 <div style="width: 220px;height: auto;text-align: center;margin-left: 20px">
-    <form th:action="@{/query}" th:object="${userAccount}" method="post" id="iForm">
+    <form action="query" th:object="${userAccount}" method="post" id="iForm">
         <input type="text" name="queryString" th:value="${queryString}" />
+        <input type="hidden" id="rowId"/>
         <button type="submit">查询</button>
     </form>
     <table id="iTable">
@@ -49,6 +55,8 @@
             <td th:text="${user.userName}"></td>
             <td th:text="${user.userGender}"></td>
             <td th:text="${user.userEmail}"></td>
+            <!--<td><button type="button" onclick="updateUesr('${user.userId}}')">修改</button></td>-->
+            <!--<td><button type="button" onclick="updateUesr('${user.userId}}')">删除</button></td>-->
         </tr>
     </table>
 </div>

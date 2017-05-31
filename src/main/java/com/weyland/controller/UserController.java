@@ -36,27 +36,27 @@ public class UserController {
 //
 //    }
 
-    @RequestMapping(value = "/fuck",method = RequestMethod.GET)
-    public String say(){
-        return "index";
-    }
-
-
-    @ResponseBody
-    @RequestMapping("/hello")
-    public String hello() {
-        return "Hello World";
-    }
-
-    @RequestMapping("/")
-    public String index(ModelMap map) {
-        map.addAttribute("hello", "hello Thymeleaf!");
-        return "hello";
-    }
+//    @RequestMapping(value = "/fuck",method = RequestMethod.GET)
+//    public String say(){
+//        return "index";
+//    }
+//
+//
+//    @ResponseBody
+//    @RequestMapping("/hello")
+//    public String hello() {
+//        return "Hello World";
+//    }
+//
+//    @RequestMapping("/")
+//    public String index(ModelMap map) {
+//        map.addAttribute("hello", "hello Thymeleaf!");
+//        return "hello";
+//    }
 
     @RequestMapping("/query")
     public String query(Model model,String queryString){
-
+        //模糊查询
         List<User> userList=userService.queryUser(queryString);
         model.addAttribute("userList",userList);
         model.addAttribute("queryString",queryString);
@@ -75,9 +75,11 @@ public class UserController {
         String result=userService.register(user);
 
         if(result.equals("success")){
+            //注册成功返回登陆页面进行验证
             model.addAttribute("result",result);
             return "login";
         }else {
+            //注册失败返回失败信息
             model.addAttribute("result",result);
             return "register";
         }
@@ -95,18 +97,18 @@ public class UserController {
         String result=userService.login(user);
 
         if(result.equals("success")){
-
+            //登陆成功跳转至查询页面
             return "query";
 
         }else if (result.equals("misMatch")){
-
+            //返回账户或密码错误
             model.addAttribute("result",result);
             model.addAttribute("user",user);
 
             return "login";
 
         }else {
-
+            //返回账户不存在
             model.addAttribute("result",result);
             model.addAttribute("user",user);
             return "login";
@@ -114,6 +116,8 @@ public class UserController {
 
 
     }
+
+
 
 
 }
