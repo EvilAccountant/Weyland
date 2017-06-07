@@ -4,8 +4,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/evilaccountant
     username: root
     password: root
-    mvc:
-      static-path-pattern: /resources/**
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +11,5 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
-
 sever:
   port: 8080

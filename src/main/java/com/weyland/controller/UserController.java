@@ -29,25 +29,11 @@ public class UserController {
 //
 //    }
 
-//    @PostMapping(value="/queryUser")
-//    public List<User> QueryUserAct(String userAccount){
-//
-//        return userService.queryUser(userAccount);
-//
-//    }
-
 //    @RequestMapping(value = "/fuck",method = RequestMethod.GET)
 //    public String say(){
 //        return "index";
 //    }
-//
-//
-//    @ResponseBody
-//    @RequestMapping("/hello")
-//    public String hello() {
-//        return "Hello World";
-//    }
-//
+
 //    @RequestMapping("/")
 //    public String index(ModelMap map) {
 //        map.addAttribute("hello", "hello Thymeleaf!");

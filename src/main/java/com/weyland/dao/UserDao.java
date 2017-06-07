@@ -28,7 +28,7 @@ public interface UserDao extends JpaRepository<User,Integer> {
      * @param userAccount
      * @return
      */
-    @Query("select u from User u where u.userAccount =:userAccount")
+    @Query("select u from User u where u.userAccount like %:userAccount")
     User findByUserAccount(@Param("userAccount") String userAccount);
 
     /**
@@ -53,7 +53,7 @@ public interface UserDao extends JpaRepository<User,Integer> {
     List<User> findByUserGender(String userGender);
 
     /**
-     * 通过帐号和电子邮箱找回
+     * 通过帐号和电子邮箱查找
      * @param userAccount
      * @param userEmail
      * @return
